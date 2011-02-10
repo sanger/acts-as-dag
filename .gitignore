@@ -1,6 +1,5 @@
 .idea/*
 *.gem
-*.gemspec
 pkg/*
 test/database.test
 
