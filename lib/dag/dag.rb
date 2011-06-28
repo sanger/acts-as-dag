@@ -590,7 +590,7 @@ module Dag
     def validate_on_create
       #make sure no duplicates
       if self.class.find_link(self.source, self.sink)
-        self.errors.add_to_base('Link already exists between these points')
+        self.errors.add_to_base("Link already exists between these points (#{self.source.inspect}->#{self.sink.inspect})")
       end
       #make sure no long cycles
       if self.class.find_link(self.sink, self.source)
