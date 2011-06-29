@@ -794,6 +794,10 @@ module Dag
         above_bridging_leg = self.rewire_crossing(above_leg, self)
         above_bridging_legs << above_bridging_leg unless above_bridging_leg.nil?
       end
+      above_bridging_legs = above_bridging_legs.inject([]) do |array, leg|
+        array << leg unless array.any? { |x| x.ancestor_id == leg.ancestor_id and x.descendant_id == leg.descendant_id }
+        array
+      end
 
       #everything beneath me tied to my source
       below_sinks.each do |below_sink|
