@@ -262,8 +262,8 @@ module Dag
       end
     else
       self.class_eval <<-EOL4
-              has_many :#{prefix}links_as_ancestor, :foreign_key => '#{dag_link_class.ancestor_id_column_name}', :class_name => '#{dag_link_class_name}'
-              has_many :#{prefix}links_as_descendant, :foreign_key => '#{dag_link_class.descendant_id_column_name}', :class_name => '#{dag_link_class_name}'
+              has_many :#{prefix}links_as_ancestor, :foreign_key => '#{dag_link_class.ancestor_id_column_name}', :class_name => '#{dag_link_class_name}', :dependent => :destroy
+              has_many :#{prefix}links_as_descendant, :foreign_key => '#{dag_link_class.descendant_id_column_name}', :class_name => '#{dag_link_class_name}', :dependent => :destroy
             
               has_many :#{prefix}ancestors, :through => :#{prefix}links_as_descendant, :source => :ancestor
               has_many :#{prefix}descendants, :through => :#{prefix}links_as_ancestor, :source => :descendant
